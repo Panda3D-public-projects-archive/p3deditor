@@ -1,0 +1,54 @@
+Reav Soft is proud to give you Panda3D scene editor.
+
+----------------------------------------------------------------------
+
+GLOBAL:
+
+F12 - Export scene (TODO)
+Tab - Toggle view from scene exploring to edit mode
+
+----------------------------------------------------------------------
+
+VIEW MODE:
+
+Mouse - move camera
+W - Move camera
+A - Move camera
+S - Move camera
+D - Move camera
+
+T - take off
+G - land
+
+----------------------------------------------------------------------
+
+EDIT MODE:
+
+Mouse - de/selection
+S - Scale objects in all three dimensions
+X - Move object along the x axis
+Y - Move object along the y axis 
+Z - Move object along the z axis 
+H - Rotate object heading 
+P - Rotate object pitching 
+R - Rotate object rolling 
+D - Duplicate objects (to implement)
+W - Set wireframe attribute (to implement)
+
+L - Open submode AddLight
+	P - point light
+	D - directional light  (to implement)
+	A - ambient light  (to implement)
+
+E - Erase selected objects
+
+----------------------------------------------------------------------
+
+TODO:
+
+- Implement Object Placement on other objects (WIP)
+- Implement Shadow Casting
+- Implement Ambient and Directional Light
+- Light panel for colour
+- Export scene
+- Import scene
