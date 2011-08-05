@@ -454,20 +454,22 @@ class MouseCollider:
 		self.pickerRay = CollisionRay()
 		self.pickerNode.addSolid(self.pickerRay)
 		self.picker.addCollider(self.pickerNP, self.pq)
-		self.picker.showCollisions(render)
+		#uncomment for debugging purpose
+		#self.picker.showCollisions(render)
 	
 	def pickPointOnSurface(self):
 		mpos = base.mouseWatcherNode.getMouse()
 		self.pickerRay.setFromLens(base.camNode, mpos.getX(), mpos.getY())
 
 		self.picker.traverse(render)
-		# Assume for simplicity's sake that myHandler is a CollisionHandlerQueue.
+		
 		if self.pq.getNumEntries() > 0:
 			# This is so we get the closest object
 			self.pq.sortEntries()
-			n = self.pq.getEntry(0).getIntoNodePath()
-			p = self.pq.getEntry(0).getSurfacePoint(n)
-			return p
+			#n = self.pq.getEntry(0).getIntoNodePath()
+			p = self.pq.getEntry(0).getSurfacePoint(render)
+			r = self.pq.getEntry(0).getSurfaceNormal(render)
+			return [p,r]
 		else:
 			return None
 	

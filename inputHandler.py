@@ -26,11 +26,11 @@ class InputHandler(DirectObject):
 		
 		#DEBUGGING ONLY
 		#FROM HERE
-		self.accept("m", self.getPointNow)
 	
 	def getPointNow(self):
 		p = myCamera.mc.pickPointOnSurface()
-		print p
+		print "Point: "+str(p[0])
+		print "Normal: "+str(p[1])
 		#TO HERE
 	
 	def requestPointOnSurface(self,caller):
@@ -171,6 +171,8 @@ class InputHandler(DirectObject):
 		#custom events
 		self.accept("e", myObjectManager.removeSelectedObjects)
 		self.accept("f12", myApp.exportScene)
+		#used to place and do mouse/geom collision
+		self.accept("m", self.getPointNow)
 		
 		# Main Modifier
 		self.accept("q", self.pressKey, ["q"])
