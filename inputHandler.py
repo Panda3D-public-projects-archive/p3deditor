@@ -7,6 +7,7 @@ class InputHandler(DirectObject):
 		#ballancer
 		self.scrollSpeed = 2
 		#moving camera vars
+		sefl.pressedW = False
 		self.pressedS = False
 		self.pressedX = False
 		self.pressedY = False
@@ -47,6 +48,9 @@ class InputHandler(DirectObject):
 		
 		#resolving Q event
 		if self.pressedQ == True:
+			if self.pressedW = True:
+				print "Q+W"
+			'''
 			# figure out how much the mouse has moved (in pixels)
 			md = base.win.getPointer(0)
 			x = md.getX()
@@ -54,6 +58,7 @@ class InputHandler(DirectObject):
 			if base.win.movePointer(0, 300, 300):
 				for obj in self.objList:
 					obj.getModel().setX(obj.getModel().getX()+((x-300)*0.01))
+			'''
 		
 		#resolving L event
 		if self.pressedL == True:
@@ -175,6 +180,8 @@ class InputHandler(DirectObject):
 		self.accept("m", self.getPointNow)
 		
 		# Main Modifier
+		self.accept("w", self.pressKey, ["w"])
+		self.accept("w-up", self.releaseKey, ["w"])
 		self.accept("q", self.pressKey, ["q"])
 		self.accept("q-up", self.releaseKey, ["q"])
 		self.accept("s", self.pressKey, ["s"])
@@ -208,6 +215,8 @@ class InputHandler(DirectObject):
 		if base.mouseWatcherNode.hasMouse():
 			base.win.movePointer(0, self.oldCoo[0], self.oldCoo[1])
 		oldCoo = []
+		if key == "w":
+			self.pressedW = False
 		if key == "s":
 			self.pressedS = False
 		if key == "q":
@@ -250,6 +259,8 @@ class InputHandler(DirectObject):
 		#refreshing unlocked object list
 		self.objList = self.calcUnlockedObjects()
 		
+		if key == "w":
+			self.pressedW = True
 		if key == "q":
 			self.pressedQ = True
 		if key == "s":
