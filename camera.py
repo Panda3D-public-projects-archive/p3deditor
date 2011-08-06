@@ -466,13 +466,27 @@ class MouseCollider:
 		if self.pq.getNumEntries() > 0:
 			# This is so we get the closest object
 			self.pq.sortEntries()
-			#n = self.pq.getEntry(0).getIntoNodePath()
-			p = self.pq.getEntry(0).getSurfacePoint(render)
-			r = self.pq.getEntry(0).getSurfaceNormal(render)
+			numEntries = self.pq.getNumEntries()
+			for numEntry in range(numEntries):
+				entry = self.pq.getEntry(numEntry)
+				n = entry.getIntoNodePath()
+				a = n.findNetTag("collision")
+				if a.getTag("collision") != "0":
+					p = entry.getSurfacePoint(render)
+					r = entry.getSurfaceNormal(render)
+					return [p,r]
+			return None
+		return None
+					
+		'''		
+			n = self.pq.getEntry(0).getIntoNodePath()
+			if n.getPythonTag("collision") != 0:
+				p = self.pq.getEntry(0).getSurfacePoint(render)
+				r = self.pq.getEntry(0).getSurfaceNormal(render)
 			return [p,r]
 		else:
 			return None
-	
+	'''
 
 class MyCamera(DirectObject):
 	def __init__(self):

@@ -22,10 +22,12 @@ class WorldObject(DirectObject):
 	#callback of setSelected()
 	def selectionEvent(self):
 		self.model.showBounds()
+		self.model.setTag("collision","0")
 	
 	#callback of setSelected()
 	def deselectionEvent(self):
 		self.model.hideBounds()
+		self.model.setTag("collision","1")
 	
 	#reparenting model to mainNode scene
 	def setParent(self,node):

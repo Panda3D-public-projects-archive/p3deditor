@@ -7,7 +7,7 @@ class InputHandler(DirectObject):
 		#ballancer
 		self.scrollSpeed = 2
 		#moving camera vars
-		sefl.pressedW = False
+		self.pressedW = False
 		self.pressedS = False
 		self.pressedX = False
 		self.pressedY = False
@@ -27,11 +27,13 @@ class InputHandler(DirectObject):
 		
 		#DEBUGGING ONLY
 		#FROM HERE
+		self.accept("m",self.getPointNow)
 	
 	def getPointNow(self):
 		p = myCamera.mc.pickPointOnSurface()
-		print "Point: "+str(p[0])
-		print "Normal: "+str(p[1])
+		if p != None:
+			print "Point: "+str(p[0])
+			print "Normal: "+str(p[1])
 		#TO HERE
 	
 	def requestPointOnSurface(self,caller):
@@ -48,17 +50,13 @@ class InputHandler(DirectObject):
 		
 		#resolving Q event
 		if self.pressedQ == True:
-			if self.pressedW = True:
-				print "Q+W"
-			'''
-			# figure out how much the mouse has moved (in pixels)
-			md = base.win.getPointer(0)
-			x = md.getX()
-			y = md.getY()
-			if base.win.movePointer(0, 300, 300):
-				for obj in self.objList:
-					obj.getModel().setX(obj.getModel().getX()+((x-300)*0.01))
-			'''
+			if self.pressedW == True:
+				# figure out how much the mouse has moved (in pixels)
+				p = myCamera.mc.pickPointOnSurface()
+				if p != None:
+					for obj in self.objList:
+						obj.getModel().setPos(p[0])
+						obj.getModel().setHpr(p[1])
 		
 		#resolving L event
 		if self.pressedL == True:
@@ -241,7 +239,7 @@ class InputHandler(DirectObject):
 			self.pressedA = False
 	
 	def calcUnlockedObjects(self):
-		print"DEBUG: calculating all unlocked objects"
+		#print"DEBUG: calculating all unlocked objects"
 		objList = myCamera.getSelectionTool().listSelected
 		unlockedObjList = []
 		for obj in objList:
