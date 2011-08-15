@@ -3,6 +3,10 @@ from direct.gui.DirectGui import *
 from panda3d.core import *
 from direct.task import Task
 
+#qt tryout
+from PyQt4.QtCore import *
+from PyQt4.QtGui import *
+
 #world object management
 from manager import *
 #camera management
@@ -27,7 +31,7 @@ sync-video 0
 class MyApp(ShowBase):
 	def __init__(self):
 		ShowBase.__init__(self)
-
+		
 		#starting all base methods
 		__builtin__.myApp = self
 		__builtin__.myObjectManager = ObjectManager()

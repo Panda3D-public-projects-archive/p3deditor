@@ -1,3 +1,4 @@
+
 from direct.task import Task
 from direct.showbase.DirectObject import DirectObject
 
@@ -316,4 +317,3 @@ class MyGui(DirectObject):
 		self.obProp.getChildRecursive("ObjectProperties/WireframeCheckbox").subscribeEvent(PyCEGUI.Checkbox.EventCheckStateChanged, self, "changedWireframe")
 		
 		self.obProp.getChildRecursive("ObjectProperties/HiddenCheckbox").subscribeEvent(PyCEGUI.Checkbox.EventCheckStateChanged, self, "changedHidden")
-		

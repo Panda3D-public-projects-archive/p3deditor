@@ -164,6 +164,8 @@ class PointLightObject(StaticObject):
 		
 		self.plight = PointLight('pointLight')
 		self.plight.setColor(VBase4(1, 1, 1, 1))
+		#self.plight.setLens(PerspectiveLens())
+		#self.plight.setShadowCaster(True)
 		self.plnp = self.model.attachNewNode(self.plight)
 		render.setLight(self.plnp)
 		

@@ -157,7 +157,7 @@ class MouseMover(DirectObject):
 		#then removing task and resetting pointer to previous position
 		taskMgr.remove("mouseMoverTask")
 		base.win.movePointer(0,self.lastCoo[0],self.lastCoo[1])
-		
+'''	
 class PropSet:
 	def __init__(self):
 		#fullscreen toggle
@@ -194,7 +194,7 @@ class PropSet:
 			wp.setFullscreen(True)
 			self.full = True
 		base.win.requestProperties(wp)
-
+'''
 class KeyboardModifiers(DirectObject): 
 	def __init__(self): 
 		self.booAlt = False 
@@ -493,7 +493,7 @@ class MyCamera(DirectObject):
 		#keyboard/mouse mover
 		self.km = KeyboardMover()
 		self.mm = MouseMover()
-		self.ps = PropSet()
+		#self.ps = PropSet()
 		self.st = SelectionTool()
 		self.mc = MouseCollider()
 		#disabling mouse by default
@@ -547,7 +547,7 @@ class MyCamera(DirectObject):
 	
 	def setUtilsActive(self):
 		self.accept("tab", self.toggleView)
-		self.accept("f", self.ps.toggleFullscreen)
+		#self.accept("f", self.ps.toggleFullscreen)
 	
 	def setUtilsUnactive(self):
 		self.ignore("tab")
