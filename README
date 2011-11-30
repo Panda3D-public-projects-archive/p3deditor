@@ -43,6 +43,9 @@ E - Erase selected objects
 
 ----------------------------------------------------------------------
 
+LAST:
+- set autogeneration of object tree (right window)
+
 TODO:
 
 - Implement Object Placement on other objects (WIP)

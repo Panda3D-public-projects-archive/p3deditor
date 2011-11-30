@@ -301,6 +301,17 @@ class SelectionTool(DirectObject):
 	def funcDeselectActionOnObject(self, obj):
 		obj.deselectionEvent()
 	
+	#used to clear selection by code
+	def clearSelection(self):
+		for j in self.listSelected[:]:
+			if j in self.listSelected:
+				#execute deselection object
+				self.funcDeselectActionOnObject(j)
+				#get rid of it
+				self.listSelected.remove(j)
+			if j in self.listLastSelected:
+				self.listLastSelected.remove(j)
+	
 	def OnStartSelect(self):
 		if not self.active:
 			return
@@ -561,10 +572,10 @@ class MyCamera(DirectObject):
 	
 	def toggleView(self):
 		if self.getState() == "fly":
-			myGui.showAll()
+			#myGui.showAll()  to be removed soon
 			myInputHandler.setActive()
 		if self.getState() == "static":
-			myGui.hideAll()
+			#myGui.hideAll()  to be removed soon
 			myInputHandler.setInactive()
 		#switching camera in any case
 		self.toggleState()

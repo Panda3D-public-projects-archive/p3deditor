@@ -7,6 +7,8 @@ from PyQt4.QtGui import *
 #custom imports
 from SceneGraphBrowserUi import Ui_sceneGraphBrowser
 
+from utilities import *
+
 '''
 Scene graph window class
 '''
@@ -17,6 +19,11 @@ class SceneGraphWindow(QMainWindow):
 		self.ui.setupUi(self)
 		
 		self.ui.sgTree.setHeaderHidden(True)
+		
+		self.ui.sgTree.itemDoubleClicked.connect(self.changeSelection)
+	
+	def changeSelection(self):
+		myCamera.st.clearSelection()
 	
 	def eraseAll(self):
 		self.ui.sgTree.clear()
@@ -53,6 +60,10 @@ class SceneGraphAnalyzer:
 		self.parent = nn
 		self.browse(self.rootNode)
 	
+	#
+	# recursive function that fills the scene node
+	# limited at .egg structures
+	#
 	def browse(self,node):
 		for child in node.getChildren():
 			
@@ -63,7 +74,11 @@ class SceneGraphAnalyzer:
 			lastParent = self.parent
 			
 			self.parent = nn
-			self.browse(child)
+			# 
+			# checking file extension in order to go to deeper than egg model structure
+			# 
+			if Utilities.getFileExtension(child.getName()) != "egg":
+				self.browse(child)
 			
 			self.parent = lastParent
 

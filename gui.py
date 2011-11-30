@@ -6,6 +6,8 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import * 
 from mainwindow import Ui_MainWindow
 
+from utilities import *
+
 import sys, os, string
 
 
@@ -15,28 +17,38 @@ class QTTest(QMainWindow):
 		self.ui = Ui_MainWindow()
 		self.ui.setupUi(self)
 		
-		fsModel = QFileSystemModel()
-		fsModel.setRootPath(QDir.currentPath())
-		
-		self.ui.eggPool.setModel(fsModel)
-		self.ui.eggPool.setRootIndex(fsModel.index(QDir.currentPath()+"/dataset"))
-		#hiding everything execept for filename
-		self.ui.eggPool.hideColumn(1)
-		self.ui.eggPool.hideColumn(2)
-		self.ui.eggPool.hideColumn(3)
-		self.ui.eggPool.setHeaderHidden(True)
-		
-		self.ui.eggPool.activated.connect(self.ping)
+		self.fillPool()
+		self.ui.eggPool.itemDoubleClicked.connect(self.sendNewModel)
 		
 		# this basically creates an idle task 
 		self.timer =  QTimer(self) 
 		self.connect( self.timer, SIGNAL("timeout()"), pandaCallback ) 
 		self.timer.start(0)
 	
-	def ping(self):
-		print "piripiriping!"
+	def fillPool(self):
+		self.ui.eggPool.clear()
+		files = Utilities.getFilesIn("dataset")
+		for e in files:
+			self.ui.eggPool.addItem(e)
+	
+	def sendNewModel(self,item):
+		filepath = str(item.text())  #casting due to compatibility issues
+		myObjectManager.addObject(filepath)
+		
 
 class MyGui(DirectObject):
  
 	def __init__(self):
 		pass
+	
+	#
+	# TODO STUFF
+	#
+	def noneObjSelected(self):
+		print "TODO: implement MyGui.noneObjSelected()"
+	
+	def oneObjSelected(self):
+		print "TODO: implement MyGui.oneObjSelected()"
+		
+	def manyObjSelected(self):
+		print "TODO: implement MyGui.manyObjSelected()"

@@ -4,9 +4,26 @@ from direct.interval.LerpInterval import LerpHprInterval
 from direct.interval.IntervalGlobal import *
 from direct.showbase.DirectObject import DirectObject
 
+import glob, os
+
 class Utilities:
 	def __init(self):
 		pass
+	
+	@staticmethod
+	def getFilesIn(directory):
+		prevDir = os.getcwd()
+		os.chdir(directory)
+		files = glob.glob("*.egg")
+		os.chdir(prevDir)
+		
+		return files
+		
+	@staticmethod
+	def getFileExtension(filename):
+		chunks = filename.split(".")
+		lastChunk = chunks[-1]
+		return lastChunk
 	
 	@staticmethod
 	def getHalfPoint(p1,p2):
