@@ -1,11 +1,10 @@
+# -*- coding: utf-8-*- 
+
+#import direct.directbase.DirectStart 
 from direct.showbase.ShowBase import ShowBase
-from direct.gui.DirectGui import *
+from direct.showbase.DirectObject import DirectObject 
 from panda3d.core import *
 from direct.task import Task
-
-#qt tryout
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
 
 #world object management
 from manager import *
@@ -16,19 +15,19 @@ from gui import *
 #input management
 from inputHandler import InputHandler
 
-#system imports
+#other crazy stuffz
+from SceneGraphBrowser import *
+
 import sys,__builtin__
 
-#fullscreen e grandezza finestra
-loadPrcFileData("","""
-fullscreen 0
-win-size 800 600
+from pandac.PandaModules import loadPrcFileData 
+loadPrcFileData("", """
 text-encoding utf8
 show-frame-rate-meter 1
-sync-video 0
-""")
-
-class MyApp(ShowBase):
+sync-video #f
+""") 
+	
+class World(ShowBase):	
 	def __init__(self):
 		ShowBase.__init__(self)
 		
@@ -46,17 +45,25 @@ class MyApp(ShowBase):
 		
 		self.mainScene = render.attachNewNode("mainScene")
 	
+	def pandaCallback(self):
+		taskMgr.step()
+	
 	def getSceneNode(self):
 		return self.mainScene
 	
 	def exportScene(self):
-		#hello
-		print "DEBUG: executing render.ls() "
-		render.ls()
+		s.refresh()
 		
-
 	def defineBaseEvents(self):
 		base.accept("escape", sys.exit)
 
-app = MyApp()
-app.run()
+w = World()
+
+app = QApplication(sys.argv)
+q = QTTest(w.pandaCallback)
+q.show()
+s = SceneGraphWindow()
+s.show()
+app.exec_()
+
+w.run()
