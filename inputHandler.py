@@ -56,7 +56,7 @@ class InputHandler(DirectObject):
 				if p != None:
 					for obj in self.objList:
 						obj.getModel().setPos(p[0])
-						obj.getModel().setHpr(p[1])
+						obj.getModel().lookAt(p[0]+p[1])
 		
 		#resolving L event
 		if self.pressedL == True:

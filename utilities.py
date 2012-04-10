@@ -6,6 +6,12 @@ from direct.showbase.DirectObject import DirectObject
 
 import glob, os
 
+debug = True
+
+def debug(s,v=""):
+	if debug == True:
+		print s,v
+
 class Utilities:
 	def __init(self):
 		pass

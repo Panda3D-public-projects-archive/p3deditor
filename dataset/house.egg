@@ -3,9 +3,9 @@
 <Comment> { "Egg laid by Chicken for Blender, version R91" }
 
 <Material> Material {
-  <Scalar> diffr {0.0}
-  <Scalar> diffg {0.0}
-  <Scalar> diffb {0.0}
+  <Scalar> diffr {0.5}
+  <Scalar> diffg {0.6}
+  <Scalar> diffb {0.2}
   <Scalar> specr {0.25}
   <Scalar> specg {0.25}
   <Scalar> specb {0.25}
@@ -18,7 +18,7 @@
       1.000000 0.000000 0.000000 0.000000
       0.000000 1.000000 0.000000 0.000000
       0.000000 0.000000 1.000000 0.000000
-      0.000000 0.000000 0.011651 1.000000
+      0.000000 0.000000 0.000000 1.000000
     }
   }
   <VertexPool> Cube {

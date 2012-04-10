@@ -485,6 +485,7 @@ class MouseCollider:
 				if a.getTag("collision") != "0":
 					p = entry.getSurfacePoint(render)
 					r = entry.getSurfaceNormal(render)
+					
 					return [p,r]
 			return None
 		return None
