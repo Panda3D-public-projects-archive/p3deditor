@@ -156,7 +156,7 @@ class MouseMover(DirectObject):
 		self.showMouse()
 		#then removing task and resetting pointer to previous position
 		taskMgr.remove("mouseMoverTask")
-		base.win.movePointer(0,self.lastCoo[0],self.lastCoo[1])
+		base.win.movePointer(0,int(self.lastCoo[0]),int(self.lastCoo[1]))
 '''	
 class PropSet:
 	def __init__(self):

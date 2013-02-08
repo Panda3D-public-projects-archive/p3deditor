@@ -211,7 +211,7 @@ class InputHandler(DirectObject):
 		
 		#avoiding crash if someone click outside window
 		if base.mouseWatcherNode.hasMouse():
-			base.win.movePointer(0, self.oldCoo[0], self.oldCoo[1])
+			base.win.movePointer(0, int(self.oldCoo[0]), int(self.oldCoo[1]))
 		oldCoo = []
 		if key == "w":
 			self.pressedW = False
