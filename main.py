@@ -7,13 +7,16 @@ from panda3d.core import *
 from direct.task import Task
 
 #world object management
-from manager import *
+from src.scenemanager.ObjectManager import ObjectManager
+
 #camera management
-from camera import *
-#gui
+from src.camera.CameraManager import CameraManager
+
+#gui -- TODO: refactor gui position in project
 from gui import *
+
 #input management
-from inputHandler import InputHandler
+from src.input.InputHandler import InputHandler
 
 #other crazy stuffz
 from SceneGraphBrowser import *
@@ -35,7 +38,7 @@ class World(ShowBase):
 		__builtin__.myApp = self
 		__builtin__.myObjectManager = ObjectManager()
 		__builtin__.myGui = MyGui()
-		__builtin__.myCamera = MyCamera()
+		__builtin__.myCamera = CameraManager()
 		__builtin__.myInputHandler = InputHandler()
 		
 		#default config when just opened
