@@ -12,7 +12,7 @@ from utilities import *
 '''
 Scene graph window class
 '''
-class SceneGraphWindow(QMainWindow): 
+class SceneGraphBrowser(QMainWindow, DirectObject): 
 	def __init__(self): 
 		QMainWindow.__init__(self)
 		self.ui = Ui_sceneGraphBrowser()
@@ -20,7 +20,19 @@ class SceneGraphWindow(QMainWindow):
 		
 		self.ui.sgTree.setHeaderHidden(True)
 		
+		#qt4 event bindings
 		self.ui.sgTree.itemDoubleClicked.connect(self.changeSelection)
+		
+		#panda3d event bindings
+		self.accept("refresh scenetree", self.refresh)
+	
+	def expandAll(self,item):
+		self.ui.sgTree.expandItem(item)
+		
+		childList = []
+		
+		for childIndex in range(item.childCount()):
+			self.expandAll(item.child(childIndex))
 	
 	def changeSelection(self):
 		myCamera.st.clearSelection()
@@ -38,6 +50,8 @@ class SceneGraphWindow(QMainWindow):
 		#adding all the others
 		sga = SceneGraphAnalyzer(myApp.mainScene,self.ui.sgTree)
 		sga.generate()
+		
+		self.expandAll(self.ui.sgTree.topLevelItem(0))
 		
 '''
 Object that analyze and build up the scene graph in

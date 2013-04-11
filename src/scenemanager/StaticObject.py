@@ -8,10 +8,8 @@ class StaticObject(WorldObject):
 		#calling parent method
 		WorldObject.__init__(self)
 		
-		#private? xD
 		self.originalFilename = file
-		
-		#ppppppppppablic!
+		self.placeholder = False
 		self.locking = False
 		
 		if file != False:
@@ -22,6 +20,42 @@ class StaticObject(WorldObject):
 	
 	def getName(self):
 		return self.model.getName()
+	
+	def setX(self,factor):
+		self.model.setX(self.model.getX()+factor)
+		
+		if self.placeholder != False:
+			self.placeholder.setX(self.placeholder.getX()+factor)
+	
+	def setY(self,factor):
+		self.model.setY(self.model.getY()+factor)
+		
+		if self.placeholder != False:
+			self.placeholder.setY(self.placeholder.getY()+factor)
+	
+	def setZ(self,factor):
+		self.model.setZ(self.model.getZ()+factor)
+		
+		if self.placeholder != False:
+			self.placeholder.setZ(self.placeholder.getZ()+factor)
+	
+	def setH(self,factor):
+		self.model.setH(self.model.getH()+factor)
+		
+		if self.placeholder != False:
+			self.placeholder.setH(self.placeholder.getH()+factor)
+	
+	def setP(self,factor):
+		self.model.setP(self.model.getP()+factor)
+		
+		if self.placeholder != False:
+			self.placeholder.setP(self.placeholder.getP()+factor)
+	
+	def setR(self,factor):
+		self.model.setR(self.model.getR()+factor)
+		
+		if self.placeholder != False:
+			self.placeholder.setR(self.placeholder.getR()+factor)
 	
 	def setName(self,s):
 		self.model.setName(s)

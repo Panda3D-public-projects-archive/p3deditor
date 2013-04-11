@@ -17,13 +17,26 @@ class QTTest(QMainWindow):
 		self.ui = Ui_MainWindow()
 		self.ui.setupUi(self)
 		
+		#fills widget with found models on dataset folder
 		self.fillPool()
-		self.ui.eggPool.itemDoubleClicked.connect(self.sendNewModel)
 		
-		# this basically creates an idle task 
-		self.timer =  QTimer(self) 
+		self.setWidgetEvents()
+		
+		# this basically creates an idle task
+		self.timer = QTimer(self)
 		self.connect( self.timer, SIGNAL("timeout()"), pandaCallback ) 
 		self.timer.start(0)
+	
+	def setWidgetEvents(self):
+		self.ui.eggPool.itemDoubleClicked.connect(self.sendNewModel)
+		self.ui.treeWidget.itemDoubleClicked.connect(self.toolTriggered)
+	
+	'''
+	gui requests will be broadcasted
+	'''
+	def toolTriggered(self, item, column):
+		print "broadcasting: ", item.text(0)
+		messenger.send(item.text(0).__str__())
 	
 	def fillPool(self):
 		self.ui.eggPool.clear()
@@ -33,22 +46,4 @@ class QTTest(QMainWindow):
 	
 	def sendNewModel(self,item):
 		filepath = str(item.text())  #casting due to compatibility issues
-		myObjectManager.addObject(filepath)
-		
-
-class MyGui(DirectObject):
- 
-	def __init__(self):
-		pass
-	
-	#
-	# TODO STUFF
-	#
-	def noneObjSelected(self):
-		print "TODO: implement MyGui.noneObjSelected()"
-	
-	def oneObjSelected(self):
-		print "TODO: implement MyGui.oneObjSelected()"
-		
-	def manyObjSelected(self):
-		print "TODO: implement MyGui.manyObjSelected()"
+		messenger.send("addobject", [filepath])

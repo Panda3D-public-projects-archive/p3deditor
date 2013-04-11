@@ -6,20 +6,24 @@ from direct.showbase.DirectObject import DirectObject
 from panda3d.core import *
 from direct.task import Task
 
+# a bit of qts
+from PyQt4.QtCore import * 
+from PyQt4.QtGui import * 
+
 #world object management
 from src.scenemanager.ObjectManager import ObjectManager
 
 #camera management
 from src.camera.CameraManager import CameraManager
 
-#gui -- TODO: refactor gui position in project
-from gui import *
+#gui imports
+from src.gui.QTTest import QTTest
+from src.gui.GuiManager import GuiManager
+from src.gui.SceneGraphBrowser import SceneGraphBrowser
 
 #input management
 from src.input.InputHandler import InputHandler
-
-#other crazy stuffz
-from SceneGraphBrowser import *
+from src.input.EventHandler import EventHandler
 
 import sys,__builtin__
 
@@ -37,9 +41,10 @@ class World(ShowBase):
 		#starting all base methods
 		__builtin__.myApp = self
 		__builtin__.myObjectManager = ObjectManager()
-		__builtin__.myGui = MyGui()
+		__builtin__.myGui = GuiManager()
 		__builtin__.myCamera = CameraManager()
 		__builtin__.myInputHandler = InputHandler()
+		__builtin__.myEventHandler = EventHandler()
 		
 		#default config when just opened
 		myCamera.mm.showMouse()
@@ -63,10 +68,15 @@ class World(ShowBase):
 w = World()
 
 app = QApplication(sys.argv)
+
+# left panel
 q = QTTest(w.pandaCallback)
 q.show()
-s = SceneGraphWindow()
+
+# right panel
+s = SceneGraphBrowser()
 s.show()
+
 app.exec_()
 
 w.run()

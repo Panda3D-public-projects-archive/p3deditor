@@ -89,9 +89,9 @@ class InputHandler(DirectObject):
 						obj.getModel().setScale(obj.getModel().getScale()+((x-300)*0.01))
 					if obj.getType() == "PointLightObject":
 						att = obj.getPandaNode().getAttenuation()
-						c1 = att.getX()+(x-300)*0.01
-						c2 = att.getY()+(x-300)*0.01
-						c3 = att.getZ()+(x-300)*0.01
+						c1 = att.getX()+(x-300)*0.001
+						c2 = att.getY()+(x-300)*0.001
+						c3 = att.getZ()+(x-300)*0.001
 						# Attenuation must be between 0 and 1
 						if c1 < 0:
 							c1 = 0
@@ -111,7 +111,7 @@ class InputHandler(DirectObject):
 			y = md.getY()
 			if base.win.movePointer(0, 300, 300):
 				for obj in self.objList:
-					obj.getModel().setX(obj.getModel().getX()+((x-300)*0.01))
+					obj.setX((x-300)*0.01)
 		
 		#resolving Y event
 		if self.pressedY == True:
@@ -121,7 +121,7 @@ class InputHandler(DirectObject):
 			y = md.getY()
 			if base.win.movePointer(0, 300, 300):
 				for obj in self.objList:
-					obj.getModel().setY(obj.getModel().getY()+((x-300)*0.01))
+					obj.setY((x-300)*0.01)
 		
 		#resolving Z event
 		if self.pressedZ == True:
@@ -131,7 +131,7 @@ class InputHandler(DirectObject):
 			y = md.getY()
 			if base.win.movePointer(0, 300, 300):
 				for obj in self.objList:
-					obj.getModel().setZ(obj.getModel().getZ()+((x-300)*0.01))
+					obj.setZ((x-300)*0.01)
 		
 		#resolving H event
 		if self.pressedH == True:
@@ -141,7 +141,7 @@ class InputHandler(DirectObject):
 			y = md.getY()
 			if base.win.movePointer(0, 300, 300):
 				for obj in self.objList:
-					obj.getModel().setH(obj.getModel().getH()+((x-300)*0.1))
+					obj.setH((x-300)*0.01)
 		
 		#resolving P event
 		if self.pressedP == True:
@@ -151,7 +151,7 @@ class InputHandler(DirectObject):
 			y = md.getY()
 			if base.win.movePointer(0, 300, 300):
 				for obj in self.objList:
-					obj.getModel().setP(obj.getModel().getP()+((x-300)*0.1))
+					obj.setP((x-300)*0.01)
 		
 		#resolving R event
 		if self.pressedR == True:
@@ -161,7 +161,7 @@ class InputHandler(DirectObject):
 			y = md.getY()
 			if base.win.movePointer(0, 300, 300):
 				for obj in self.objList:
-					obj.getModel().setR(obj.getModel().getR()+((x-300)*0.1))
+					obj.setR((x-300)*0.01)
 		
 		return Task.cont
 	

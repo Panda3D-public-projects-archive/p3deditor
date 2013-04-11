@@ -27,26 +27,29 @@ class MouseCollider:
 		#self.picker.showCollisions(render)
 	
 	def pickPointOnSurface(self):
-		mpos = base.mouseWatcherNode.getMouse()
-		self.pickerRay.setFromLens(base.camNode, mpos.getX(), mpos.getY())
+		if base.mouseWatcherNode.hasMouse():
+			mpos = base.mouseWatcherNode.getMouse()
+			self.pickerRay.setFromLens(base.camNode, mpos.getX(), mpos.getY())
 
-		self.picker.traverse(render)
-		
-		if self.pq.getNumEntries() > 0:
-			# This is so we get the closest object
-			self.pq.sortEntries()
-			numEntries = self.pq.getNumEntries()
-			for numEntry in range(numEntries):
-				entry = self.pq.getEntry(numEntry)
-				n = entry.getIntoNodePath()
-				a = n.findNetTag("collision")
-				if a.getTag("collision") != "0":
-					p = entry.getSurfacePoint(render)
-					r = entry.getSurfaceNormal(render)
-					
-					return [p,r]
+			self.picker.traverse(render)
+			
+			if self.pq.getNumEntries() > 0:
+				# This is so we get the closest object
+				self.pq.sortEntries()
+				numEntries = self.pq.getNumEntries()
+				for numEntry in range(numEntries):
+					entry = self.pq.getEntry(numEntry)
+					n = entry.getIntoNodePath()
+					a = n.findNetTag("collision")
+					if a.getTag("collision") != "0":
+						p = entry.getSurfacePoint(render)
+						r = entry.getSurfaceNormal(render)
+						
+						return [p,r]
+				return None
 			return None
-		return None
+		else:
+			return None
 					
 		'''		
 			n = self.pq.getEntry(0).getIntoNodePath()
