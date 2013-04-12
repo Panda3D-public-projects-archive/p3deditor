@@ -98,8 +98,6 @@ class SelectionTool(DirectObject):
 			return
 		if not base.mouseWatcherNode.hasMouse():
 			return
-		if base.mouseWatcherNode.getMouse().getX() > 0.4:
-			return
 		self.booMouseMoved = False
 		self.booSelecting = True
 		self.pt2InitialMousePos = Point2(base.mouseWatcherNode.getMouse())
@@ -155,20 +153,17 @@ class SelectionTool(DirectObject):
 				self.listSelected = [objTempSelected]
 				self.funcSelectActionOnObject(objTempSelected)
 			else:
-				if base.mouseWatcherNode.getMouse().getX() > 0.4:
-					return
 				for i in self.listSelected[:]:
 					self.funcDeselectActionOnObject(i)
 					self.listSelected.remove(i)
 		#after all this check gui changes needed
 		
 		if len(self.listSelected) > 1:
-			# WRITE ME - not completed
-			myGui.manyObjSelected()
+			myGui.manyObjSelected(self.listSelected)
 		if len(self.listSelected) == 0:
 			myGui.noneObjSelected()
 		if len(self.listSelected) == 1:
-			myGui.oneObjSelected()
+			myGui.oneObjSelected(self.listSelected[0])
 
 	def UpdateSelRect(self, task): 
 		if not self.active:

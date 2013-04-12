@@ -33,34 +33,7 @@
         </property>
        </column>
       </widget>
-      <widget class="QScrollArea" name="propArea">
-       <property name="widgetResizable">
-        <bool>true</bool>
-       </property>
-       <widget class="QWidget" name="propAreaWidget">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>224</width>
-          <height>76</height>
-         </rect>
-        </property>
-        <widget class="QPushButton" name="pushButton">
-         <property name="geometry">
-          <rect>
-           <x>30</x>
-           <y>20</y>
-           <width>181</width>
-           <height>31</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Example Widget Area</string>
-         </property>
-        </widget>
-       </widget>
-      </widget>
+      <widget class="QTableWidget" name="propertiesTable"/>
      </widget>
     </item>
    </layout>

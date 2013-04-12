@@ -23,8 +23,20 @@ class PointLightObject(StaticObject):
 		
 		#setting type
 		self.setType("PointLightObject")
+		
+		#manually overwriting initial name
+		self.setName("pointlight")
 	
-	
+	#overwriting setName virtual method
+	def setName(self,s):
+		ext = s.split(".")[-1]
+		
+		#forcing egg extension
+		if len(ext)>0:
+			if ext != "plight":
+				self.model.setName(s+".plight")
+			else:
+				self.model.setName(s)
 	
 	def getNodePath(self):
 		return self.plnp

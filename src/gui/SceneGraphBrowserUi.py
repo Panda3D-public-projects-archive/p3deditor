@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'sceneGraphBrowser.ui'
+# Form implementation generated from reading ui file 'sceneGraphWindow.ui'
 #
-# Created: Mon Aug 15 17:34:16 2011
-#      by: PyQt4 UI code generator 4.8.3
+# Created: Thu Apr 11 16:28:10 2013
+#      by: PyQt4 UI code generator 4.9.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -29,16 +29,10 @@ class Ui_sceneGraphBrowser(object):
         self.splitter.setObjectName(_fromUtf8("splitter"))
         self.sgTree = QtGui.QTreeWidget(self.splitter)
         self.sgTree.setObjectName(_fromUtf8("sgTree"))
-        self.propArea = QtGui.QScrollArea(self.splitter)
-        self.propArea.setWidgetResizable(True)
-        self.propArea.setObjectName(_fromUtf8("propArea"))
-        self.propAreaWidget = QtGui.QWidget()
-        self.propAreaWidget.setGeometry(QtCore.QRect(0, 0, 224, 76))
-        self.propAreaWidget.setObjectName(_fromUtf8("propAreaWidget"))
-        self.pushButton = QtGui.QPushButton(self.propAreaWidget)
-        self.pushButton.setGeometry(QtCore.QRect(30, 20, 181, 31))
-        self.pushButton.setObjectName(_fromUtf8("pushButton"))
-        self.propArea.setWidget(self.propAreaWidget)
+        self.propertiesTable = QtGui.QTableWidget(self.splitter)
+        self.propertiesTable.setObjectName(_fromUtf8("propertiesTable"))
+        self.propertiesTable.setColumnCount(0)
+        self.propertiesTable.setRowCount(0)
         self.verticalLayout.addWidget(self.splitter)
         sceneGraphBrowser.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(sceneGraphBrowser)
@@ -52,5 +46,4 @@ class Ui_sceneGraphBrowser(object):
     def retranslateUi(self, sceneGraphBrowser):
         sceneGraphBrowser.setWindowTitle(QtGui.QApplication.translate("sceneGraphBrowser", "Scene Graph Browser", None, QtGui.QApplication.UnicodeUTF8))
         self.sgTree.headerItem().setText(0, QtGui.QApplication.translate("sceneGraphBrowser", "Current Scene", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton.setText(QtGui.QApplication.translate("sceneGraphBrowser", "Example Widget Area", None, QtGui.QApplication.UnicodeUTF8))
 

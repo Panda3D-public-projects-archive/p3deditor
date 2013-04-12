@@ -24,7 +24,7 @@ class QTTest(QMainWindow):
 		
 		# this basically creates an idle task
 		self.timer = QTimer(self)
-		self.connect( self.timer, SIGNAL("timeout()"), pandaCallback ) 
+		self.connect( self.timer, SIGNAL("timeout()"), pandaCallback )
 		self.timer.start(0)
 	
 	def setWidgetEvents(self):

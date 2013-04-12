@@ -5,14 +5,14 @@ class GuiManager(DirectObject):
 	def __init__(self):
 		pass
 	
-	#
-	# TODO STUFF
-	#
+	'''
+	Simply telling GUI selection has changed and sending pointers to delegates.
+	'''
 	def noneObjSelected(self):
-		print "TODO: implement MyGui.noneObjSelected()"
+		messenger.send("refresh noneproptable")
 	
-	def oneObjSelected(self):
-		print "TODO: implement MyGui.oneObjSelected()"
+	def oneObjSelected(self, obj):
+		messenger.send("refresh oneproptable", [obj])
 		
-	def manyObjSelected(self):
-		print "TODO: implement MyGui.manyObjSelected()"
+	def manyObjSelected(self,objlist):
+		messenger.send("refresh manyproptable", objlist)

@@ -58,7 +58,14 @@ class StaticObject(WorldObject):
 			self.placeholder.setR(self.placeholder.getR()+factor)
 	
 	def setName(self,s):
-		self.model.setName(s)
+		ext = s.split(".")[-1]
+		
+		#forcing egg extension
+		if len(ext)>0:
+			if ext != "egg":
+				self.model.setName(s+".egg")
+			else:
+				self.model.setName(s)
 	
 	def loadPlaceHolder(self,file):
 		#hiding real model
