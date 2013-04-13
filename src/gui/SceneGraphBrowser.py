@@ -10,12 +10,10 @@ from SceneGraphBrowserUi import Ui_sceneGraphBrowser
 from PropertiesTable import PropertiesTable
 from SceneGraphAnalyzer import SceneGraphAnalyzer
 
-from utilities import *
-
 '''
 Scene graph window class
 '''
-class SceneGraphBrowser(QMainWindow): 
+class SceneGraphBrowser(QMainWindow):
 	def __init__(self): 
 		QMainWindow.__init__(self)
 		self.ui = Ui_sceneGraphBrowser()

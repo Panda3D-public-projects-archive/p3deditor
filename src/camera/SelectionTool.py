@@ -82,6 +82,28 @@ class SelectionTool(DirectObject):
 	def funcDeselectActionOnObject(self, obj):
 		obj.deselectionEvent()
 	
+	#force selection of objects in the scene graph by pattern
+	def forceSelection(self, pattern):
+		myCamera.st.clearSelection()
+		
+		print "forcing selection to", pattern 
+		
+		for i in self.listConsideration:
+			if i.getName() == pattern: #force selection
+				self.funcSelectActionOnObject(i)
+				self.listSelected.append(i)
+		
+		self.selectionHasChanged()
+	
+	#call this function when you know selection has changed
+	def selectionHasChanged(self):
+		if len(self.listSelected) > 1:
+			myGui.manyObjSelected(self.listSelected)
+		if len(self.listSelected) == 0:
+			myGui.noneObjSelected()
+		if len(self.listSelected) == 1:
+			myGui.oneObjSelected(self.listSelected[0])
+	
 	#used to clear selection by code
 	def clearSelection(self):
 		for j in self.listSelected[:]:
@@ -157,13 +179,7 @@ class SelectionTool(DirectObject):
 					self.funcDeselectActionOnObject(i)
 					self.listSelected.remove(i)
 		#after all this check gui changes needed
-		
-		if len(self.listSelected) > 1:
-			myGui.manyObjSelected(self.listSelected)
-		if len(self.listSelected) == 0:
-			myGui.noneObjSelected()
-		if len(self.listSelected) == 1:
-			myGui.oneObjSelected(self.listSelected[0])
+		self.selectionHasChanged()
 
 	def UpdateSelRect(self, task): 
 		if not self.active:

@@ -9,10 +9,10 @@ class GuiManager(DirectObject):
 	Simply telling GUI selection has changed and sending pointers to delegates.
 	'''
 	def noneObjSelected(self):
-		messenger.send("refresh noneproptable")
+		messenger.send("selected none")
 	
 	def oneObjSelected(self, obj):
-		messenger.send("refresh oneproptable", [obj])
+		messenger.send("selected one", [obj])
 		
 	def manyObjSelected(self,objlist):
-		messenger.send("refresh manyproptable", objlist)
+		messenger.send("selected many", objlist)
