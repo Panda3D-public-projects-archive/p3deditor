@@ -17,7 +17,8 @@ class PropertiesTable(DirectObject):
 		self.clearTable()
 		
 		#adding properties
-		self.addPropertyRow("name", obj.getName())
+		for key, value in obj.getPropertyList().iteritems():
+			self.addPropertyRow(key, value)
 		
 		#storing temporary selection in a cleared list
 		self.currentSelection.append(obj)

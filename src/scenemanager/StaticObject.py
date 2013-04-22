@@ -13,7 +13,14 @@ class StaticObject(WorldObject):
 		self.locking = False
 		
 		if file != False:
-			self.loadModel(file) #just down here :P
+			self.loadModel(file)
+	
+	def getPropertyList(self):
+		properties = {}
+		
+		properties["name"] = self.getName()
+		
+		return properties
 	
 	def getFilename(self):
 		return self.originalFilename

@@ -1,0 +1,58 @@
+<CoordinateSystem> { Z-Up }
+
+<Texture> Tex1 {
+  "blank_mask.png"
+  <Scalar> format { alpha }
+  <Scalar> wrapu { repeat }
+  <Scalar> wrapv { repeat }
+  <Scalar> minfilter { linear_mipmap_linear }
+  <Scalar> magfilter { linear }
+  <Scalar> envtype { MODULATE }
+  <Scalar> uv-name { uv1 }
+
+}
+<Texture> Tex2 {
+  "blank_mask.png"  
+  <Scalar> format { rgb}
+  <Scalar> wrapu { repeat }
+  <Scalar> wrapv { repeat }
+  <Scalar> minfilter { linear_mipmap_linear }
+  <Scalar> magfilter { linear }
+  <Scalar> envtype { modulate }
+  <Scalar> uv-name { uv2 }
+}
+
+<VertexPool> vpool {
+  <Vertex> 1 {
+    0 512 0
+    <UV> uv1 { 0 1 0 }
+    <UV> uv2 { 0 32 0 }
+    <Normal> { 0 0 1 }
+  }
+  <Vertex> 2 {
+    0 0 0
+    <UV> uv1 { 0 0 0 }
+    <UV> uv2 { 0 0 0.5 }
+    <Normal> { 0 0 1 }
+  }
+  <Vertex> 3 {
+    512 0 0
+    <UV> uv1 { 1 0 0 }
+    <UV> uv2 { 32 0 0 }
+    <Normal> { 0 0 1 }
+  }  
+  <Vertex> 4 {
+    512 512 0
+    <UV> uv1 { 1 1 0 }
+    <UV> uv2 { 32 32 0 }
+    <Normal> { 0 0 1 }
+  }
+  
+}
+ <Polygon> {
+ <TRef> { Tex1 }
+ <TRef> { Tex2 }
+ <VertexRef> { 1 2 3 4 <Ref> { vpool } }
+}
+    
+  
