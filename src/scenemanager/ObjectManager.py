@@ -17,7 +17,10 @@ class ObjectManager(DirectObject):
 		self.objList = []
 		self.lightList = []
 		'''self.modifier = ObjectModifier(self)'''
-		
+	
+	def addTerrain(self,filepath):
+		print "INFO: requested adding terrain"
+		print "TODO: implement loading terrain!"
 	
 	def addPointLight(self):
 		p = PointLightObject()

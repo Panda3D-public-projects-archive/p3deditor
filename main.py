@@ -25,6 +25,9 @@ from src.gui.SceneGraphBrowser import SceneGraphBrowser
 from src.input.InputHandler import InputHandler
 from src.input.EventHandler import EventHandler
 
+#third party tools management
+from src.thirdparty.ThirdPartyToolsManager import ThirdPartyToolsManager
+
 import sys,__builtin__
 
 from pandac.PandaModules import loadPrcFileData 
@@ -45,6 +48,7 @@ class World(ShowBase):
 		__builtin__.myCamera = CameraManager()
 		__builtin__.myInputHandler = InputHandler()
 		__builtin__.myEventHandler = EventHandler()
+		__builtin__.myThirdPartyTools = ThirdPartyToolsManager()
 		
 		#default config when just opened
 		myCamera.mm.showMouse()

@@ -26,7 +26,7 @@
   <Vertex> 1 {
     0 512 0
     <UV> uv1 { 0 1 0 }
-    <UV> uv2 { 0 32 0 }
+    <UV> uv2 { 0 64 0 }
     <Normal> { 0 0 1 }
   }
   <Vertex> 2 {
@@ -38,13 +38,13 @@
   <Vertex> 3 {
     512 0 0
     <UV> uv1 { 1 0 0 }
-    <UV> uv2 { 32 0 0 }
+    <UV> uv2 { 64 0 0 }
     <Normal> { 0 0 1 }
   }  
   <Vertex> 4 {
     512 512 0
     <UV> uv1 { 1 1 0 }
-    <UV> uv2 { 32 32 0 }
+    <UV> uv2 { 64 64 0 }
     <Normal> { 0 0 1 }
   }
   

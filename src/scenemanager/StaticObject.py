@@ -64,6 +64,11 @@ class StaticObject(WorldObject):
 		if self.placeholder != False:
 			self.placeholder.setR(self.placeholder.getR()+factor)
 	
+	def setProperty(self, key, value):
+		if key == "name":
+			print "INFO: storing new name"
+			self.setName(value)
+	
 	def setName(self,s):
 		ext = s.split(".")[-1]
 		

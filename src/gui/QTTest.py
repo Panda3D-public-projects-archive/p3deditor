@@ -8,6 +8,8 @@ from mainwindow import Ui_MainWindow
 
 from utilities import *
 
+from TerrainPool import TerrainPool
+
 import sys, os, string
 
 
@@ -26,7 +28,13 @@ class QTTest(QMainWindow):
 		self.timer = QTimer(self)
 		self.connect( self.timer, SIGNAL("timeout()"), pandaCallback )
 		self.timer.start(0)
-	
+		
+		self.tp = TerrainPool(self.ui.terrainPool, self.ui.createTerrainButton, self.ui.modifyTerrainButton)
+		
+		self.ui.actionPPL.triggered.connect(myEventHandler.togglePerPixelLighting)
+		self.ui.actionAmbientOcclusion.triggered.connect(myEventHandler.toggleAmbientOcclusion)
+		self.ui.actionToonShading.triggered.connect(myEventHandler.toggleToonShading)
+		
 	def setWidgetEvents(self):
 		self.ui.eggPool.itemDoubleClicked.connect(self.sendNewModel)
 		self.ui.treeWidget.itemDoubleClicked.connect(self.toolTriggered)

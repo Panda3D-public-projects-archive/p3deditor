@@ -57,7 +57,7 @@ class InputHandler(DirectObject):
 					for obj in self.objList:
 						obj.getModel().setPos(p[0])
 						obj.getModel().lookAt(p[0]+p[1])
-						obj.getModel().setP(obj.getModel().getP()-90)
+						obj.getModel().setP(obj.getModel().getP()-90) #small fix to do in order to get a good placement
 		
 		#resolving L event
 		if self.pressedL == True:
@@ -88,21 +88,6 @@ class InputHandler(DirectObject):
 				for obj in self.objList:
 					if obj.getType() == "StaticMeshObject":
 						obj.getModel().setScale(obj.getModel().getScale()+((x-300)*0.01))
-					if obj.getType() == "PointLightObject":
-						att = obj.getPandaNode().getAttenuation()
-						c1 = att.getX()+(x-300)*0.001
-						c2 = att.getY()+(x-300)*0.001
-						c3 = att.getZ()+(x-300)*0.001
-						# Attenuation must be between 0 and 1
-						if c1 < 0:
-							c1 = 0
-						if c2 < 0:
-							c2 = 0
-						if c3 < 0:
-							c3 = 0
-						
-						p3 = Point3(c1,c2,c3)
-						obj.getPandaNode().setAttenuation(p3)
 		
 		#resolving X event
 		if self.pressedX == True:

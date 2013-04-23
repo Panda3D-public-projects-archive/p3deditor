@@ -30,13 +30,16 @@ class PropertiesTable(DirectObject):
 		self.clearTable()
 		
 	def cellChanged(self, row, column):
-		if self.table.item(row,0).text().__str__() == "name":
-			if len(self.currentSelection) == 1:
-				print "INFO: storing new name"
-				self.currentSelection[0].setName(self.table.item(row,1).text().__str__())
-				#reloading all changes
-				self.oneobj(self.currentSelection[0])
-				messenger.send("refresh scenetree")
+		if len(self.currentSelection)>0: #if something is selected, else is bogus
+			
+			key = self.table.item(row,0).text().__str__()
+			value = self.table.item(row,1).text().__str__()
+		
+			self.currentSelection[0].setProperty(key,value)
+		
+			#reload everything
+			self.oneobj(self.currentSelection[0])
+			messenger.send("refresh scenetree")
 	
 	def addPropertyRow(self, label, value):
 		#resizing table size

@@ -24,6 +24,15 @@ class Utilities:
 		os.chdir(prevDir)
 		
 		return files
+	
+	@staticmethod
+	def getEverythingIn(directory): #TODO: should this be set to be getDirectoryIn ?
+		prevDir = os.getcwd()
+		os.chdir(directory)
+		files = glob.glob("*")
+		os.chdir(prevDir)
+		
+		return files
 		
 	@staticmethod
 	def getFileExtension(filename):

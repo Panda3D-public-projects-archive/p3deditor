@@ -27,6 +27,28 @@ class PointLightObject(StaticObject):
 		#manually overwriting initial name
 		self.setName("pointlight")
 	
+	def getPropertyList(self):
+		properties = StaticObject.getPropertyList(self)
+		properties["attenuation"] = str(self.getPandaNode().getAttenuation().getX())
+		
+		return properties
+	
+	def setProperty(self, key, value):
+		StaticObject.setProperty(self, key, value)
+		
+		if key == "attenuation":
+			self.setAttenuation(float(value))
+			
+		else:
+			
+			print "WARNING: property ", key, "not available in", self.getType()
+	
+	def setAttenuation(self,x):
+		att = self.getPandaNode().getAttenuation()
+		
+		p3 = Point3(x,x,x)
+		self.getPandaNode().setAttenuation(p3)
+	
 	#overwriting setName virtual method
 	def setName(self,s):
 		ext = s.split(".")[-1]
