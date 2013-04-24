@@ -3,6 +3,8 @@ from pandac.PandaModules import *
 
 from WorldObject import WorldObject
 
+import json
+
 class StaticObject(WorldObject):
 	def __init__(self,file = False):
 		#calling parent method
@@ -19,6 +21,7 @@ class StaticObject(WorldObject):
 		properties = {}
 		
 		properties["name"] = self.getName()
+		properties["wireframe"] = str(self.getWireframe())
 		
 		return properties
 	
@@ -66,8 +69,10 @@ class StaticObject(WorldObject):
 	
 	def setProperty(self, key, value):
 		if key == "name":
-			print "INFO: storing new name"
 			self.setName(value)
+		
+		if key == "wireframe":
+			self.setWireframe(value)
 	
 	def setName(self,s):
 		ext = s.split(".")[-1]
@@ -114,6 +119,12 @@ class StaticObject(WorldObject):
 	def getLocking(self):
 		return self.locking
 	
+	def setWireframe(self,value):
+		if json.loads(value.lower()) == True:
+			self.getModel().setRenderMode(RenderModeAttrib.MWireframe,1)
+		else:
+			self.getModel().setRenderMode(RenderModeAttrib.MFilled,1)
+		
 	def getWireframe(self):
 		isWireframed = self.model.getRenderMode()
 		if isWireframed == 0 or isWireframed == 1:
